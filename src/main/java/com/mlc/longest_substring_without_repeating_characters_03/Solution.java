@@ -1,5 +1,8 @@
 package com.mlc.longest_substring_without_repeating_characters_03;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution {
 	public int lengthOfLongestSubstring(String s) {
 		if(s.isEmpty()) return 0;

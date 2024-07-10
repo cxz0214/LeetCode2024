@@ -19,12 +19,12 @@ public class Solution {
 		while(p1 != null || p2 != null || carry != 0){
 			int x = (p1 != null)? p1.val : 0;
 			int y = (p2 != null)? p2.val : 0;
-			
+
 			int sum = x + y + carry;
 			carry = sum / 10;
 			current.next = new ListNode(sum % 10);
 			current = current.next;
-			
+
 			if(p1 != null) p1 = p1.next;
 			if(p2 != null) p2 = p2.next;
 		}
