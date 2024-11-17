@@ -1,8 +1,11 @@
 package com.mlc.valid_parentheses_20;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class Solution {
 	// 最初的解法
-//	public boolean isValid(String s) {
+	public boolean isValid(String s) {
 //		Stack<Character> stack = new Stack<>();
 //		for(int i = 0; i < s.length();i++){
 //			if(stack.isEmpty()){
@@ -33,29 +36,57 @@ public class Solution {
 //				return '*';
 //		}
 //	}
-	
-	// 高效一点的解法
-	char[] stack = new char[s.length()];
-	int index = -1;
-
-        for(int i = 0 ; i < s.length();i++){
-		char c = s.charAt(i);
-		if(index < 0){
-			stack[++index] = c;
-			continue;
-		}
-		if(c == '(' || c == '[' || c == '{'){
-			stack[++index] = c;
-		}else{
-			char m = stack[index];
-			if(c == ')' && m == '(' || c == ']' && m == '[' || c == '}' && m == '{'){
-				index--;
-			}else{
-				return false;
+		
+		// 高效一点的解法
+//	char[] stack = new char[s.length()];
+//	int index = -1;
+//
+//        for(int i = 0 ; i < s.length();i++){
+//		char c = s.charAt(i);
+//		if(index < 0){
+//			stack[++index] = c;
+//			continue;
+//		}
+//		if(c == '(' || c == '[' || c == '{'){
+//			stack[++index] = c;
+//		}else{
+//			char m = stack[index];
+//			if(c == ')' && m == '(' || c == ']' && m == '[' || c == '}' && m == '{'){
+//				index--;
+//			}else{
+//				return false;
+//			}
+//
+//		}
+//	}return index < 0;
+		
+		Deque<Character> stack = new ArrayDeque<>();
+		
+		for (char c : s.toCharArray()) {
+			switch (c) {
+				// （，[,{ 直接加入到栈中
+				case '(':
+				case '[':
+				case '{':
+					stack.push(c);
+					break;
+				case ')':
+					if (stack.isEmpty() || stack.pop() != '(') {
+						return false;
+					}
+					break;
+				case ']':
+					if (stack.isEmpty() || stack.pop() != '[') {
+						return false;
+					}
+					break;
+				case '}':
+					if (stack.isEmpty() || stack.pop() != '{') {
+						return false;
+					}
+					break;
 			}
-			
 		}
-	}return index < 0;
-
-
+		return stack.isEmpty();
+	}
 }
