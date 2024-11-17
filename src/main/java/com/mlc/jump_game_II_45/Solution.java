@@ -1,5 +1,9 @@
 package com.mlc.jump_game_II_45;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Solution {
 	
 	// 这个大概理解了，但是还需要在熟悉熟悉
@@ -16,5 +20,6 @@ public class Solution {
 			}
 		}
 		return steps;
+		Executors.newCachedThreadPool()
 	}
 }
